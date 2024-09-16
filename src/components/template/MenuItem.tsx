@@ -32,7 +32,7 @@ export default function MenuItem(props: MenuItemProps) {
         <li onClick={props.onClick} className={`hover:bg-gray-100 cursor-pointer`}>
             {
                 props.url ? (
-                    <Link
+                    <Link legacyBehavior
                         href={props.url}>
                         {renderizarLink()}
                     </Link>
