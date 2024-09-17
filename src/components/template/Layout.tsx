@@ -1,11 +1,12 @@
 import MenuLateral from "./MenuLateral";
 import Cabecalho from "./Cabecalho";
 import Conteudo from "./Conteudo";
+import { ReactNode } from "react";
 
 interface LayoutProps {
     titulo: string;
     subtitulo: string;
-    children?: string;
+    children?: ReactNode;
 }
 
 export default function Layout(props: LayoutProps) {
