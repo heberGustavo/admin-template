@@ -1,17 +1,31 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useState } from "react";
+
+type Tema = 'dark' | ''
 
 interface AppProviderProps {
+    tema?: Tema;
+    alternarTema?: () => void;
     children: ReactNode;
 }
 
 const AppContext = createContext({
-    nome: ""
+    tema: '',
+    alternarTema: () => {}
 });
 
-export function AppProvider({ children }: AppProviderProps) {
+export function AppProvider(props: AppProviderProps) {
+    const [tema, setTema] = useState<Tema>('');
+
+    function alternarTema(){
+        setTema(tema === "" ? "dark" : "");
+    }
+   
     return (
-        <AppContext.Provider value={{ nome: "Teste Context API" }}>
-            {children}
+        <AppContext.Provider value={{ 
+            tema,
+            alternarTema
+        }}>
+            {props.children}
         </AppContext.Provider>
     );
 }
