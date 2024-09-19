@@ -1,2 +1,3 @@
 - Tailwindcss
 - ContextAPI
+- Firebase
