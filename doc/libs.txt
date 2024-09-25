@@ -1,3 +1,4 @@
 - Tailwindcss
 - ContextAPI
 - Firebase - it's necessary config file ".env.local"
+- js-cookie
