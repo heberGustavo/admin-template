@@ -1,4 +1,4 @@
-<h1 align="center">Admin Template ❓❔❓</h1>
+<h1 align="center">Admin Template ⏮️</h1>
 <p align="center">
   
 </p>
