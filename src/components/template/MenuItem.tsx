@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { ReactNode } from "react";
 
 interface MenuItemProps {
     texto: string;
-    icone: any;
+    icone: ReactNode;
     url?: string;
     className?: string;
-    onClick?: (evento: any) => void;
+    onClick?: (evento: React.MouseEvent<HTMLLIElement>) => void;
 }
 
 export default function MenuItem(props: MenuItemProps) {

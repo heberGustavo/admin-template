@@ -3,8 +3,13 @@ import loading from "../../../public/images/loading.gif";
 import useAuth from "@/data/hook/useAuth";
 import router from "next/router";
 import Head from "next/head";
+import { ReactNode } from "react";
 
-export default function ForcarAutenticacao(props) {
+interface ForcarAutenticacaoProps {
+    children: ReactNode;
+}
+
+export default function ForcarAutenticacao(props: ForcarAutenticacaoProps) {
 
     const { usuario, carregando } = useAuth();
 
@@ -30,7 +35,12 @@ export default function ForcarAutenticacao(props) {
     function renderizarCarregando() {
         return (
             <div className="flex justify-center items-center h-screen">
-                <Image src={loading} />
+                <Image
+                    src={loading}
+                    alt="Carregando..."
+                    width={50}
+                    height={50}
+                />
             </div>
         )
     }

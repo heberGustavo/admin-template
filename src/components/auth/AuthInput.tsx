@@ -1,9 +1,9 @@
 interface AuthInputProps{
     label: string;
-    valor: any;
+    valor: string;
     tipo?: 'text' | 'email' | 'password';
     obrigatorio?: boolean;
-    onChange: (novoValor: any) => void;
+    onChange: (novoValor: string) => void;
 }
 
 export default function AuthInput(props: AuthInputProps){
