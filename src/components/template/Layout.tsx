@@ -3,7 +3,7 @@ import Cabecalho from "./Cabecalho";
 import Conteudo from "./Conteudo";
 import { ReactNode } from "react";
 import useAppData from "@/data/hook/useAppData";
-import forcarAutenticacao from "@/functions/ForcarAutenticacao";
+import forcarAutenticacao from "../../functions/forcarAutenticacao";
 //import ForcarAutenticacao from "../auth/ForcarAutenticacao";
 
 interface LayoutProps {

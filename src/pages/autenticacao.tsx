@@ -1,4 +1,4 @@
-import AuthInput from "@/components/auth/AuthInput";
+import AuthInput from "../components/auth/AuthInput";
 import { IconeAtencao } from "@/components/icons";
 import useAuth from "@/data/hook/useAuth";
 import { useState } from "react";
