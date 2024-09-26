@@ -8,6 +8,8 @@ interface AppProviderProps {
     children: ReactNode;
     usuario?: Usuario;
     carregando?: boolean;
+    login?: (email: string, senha: string) => Promise<void>;
+    cadastrar?: (email: string, senha: string) => Promise<void>;
     loginGoogle?: () => Promise<void>;
     logout?: () => Promise<void>;
 }
@@ -17,6 +19,8 @@ const NOME_COOKIE_AUTH = "admin-template-hg-auth";
 const AuthContext = createContext({
     usuario: null as Usuario | null,
     carregando: true,
+    login: (email: string, senha: string) => { },
+    cadastrar: (email: string, senha: string) => { },
     loginGoogle: () => { },
     logout: () => { },
 });
@@ -73,7 +77,31 @@ export function AuthProvider(props: AppProviderProps) {
                 new firebase.auth.GoogleAuthProvider()
             )
 
-            configurarSessao(resp.user)
+            await configurarSessao(resp.user)
+            route.push('/');
+        } finally {
+            setCarregando(false);
+        }
+    }
+
+    async function login(email: string, senha: string) {
+        try {
+            setCarregando(true);
+            const resp = await firebase.auth().signInWithEmailAndPassword(email, senha);
+
+            await configurarSessao(resp.user)
+            route.push('/');
+        } finally {
+            setCarregando(false);
+        }
+    }
+
+    async function cadastrar(email: string, senha: string) {
+        try {
+            setCarregando(true);
+            const resp = await firebase.auth().createUserWithEmailAndPassword(email, senha);
+
+            await configurarSessao(resp.user)
             route.push('/');
         } finally {
             setCarregando(false);
@@ -105,6 +133,8 @@ export function AuthProvider(props: AppProviderProps) {
         <AuthContext.Provider value={{
             usuario,
             carregando,
+            login,
+            cadastrar,
             loginGoogle,
             logout
         }}>

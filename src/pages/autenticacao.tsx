@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function Autenticacao() {
 
-    const { usuario, loginGoogle } = useAuth();
+    const { cadastrar, login, loginGoogle } = useAuth();
 
     const [erro, setErro] = useState('');
     const [modo, setModo] = useState<"login" | "cadastro">('login');
@@ -13,30 +13,31 @@ export default function Autenticacao() {
     const [senha, setSenha] = useState('');
 
 
-    function exibirErro(msg: string, tempoEmSegundos = 5){
+    function exibirErro(msg: string, tempoEmSegundos = 5) {
         setErro(msg);
-        
+
         setTimeout(() => {
             setErro('')
         }, tempoEmSegundos * 1000);
     }
 
-    function submeter() {
-        if (modo === "login") {
-            console.log("login")
-            exibirErro("Ocorreu um erro no Login!");
+    async function submeter() {
+        try {
+            if (modo === "login")
+                await login(email, senha);
+            else
+                await cadastrar(email, senha);
         }
-        else {
-            console.log("cadastrar")
-            exibirErro("Ocorreu um erro no Cadastro!");
+        catch (e) {
+            exibirErro("Ocorreu um erro inesperado");
         }
     }
 
     return (
         <div className="flex h-screen items-center justify-center">
             <div className="hidden md:block md:w-1/2 lg:w-2/3">
-                <img 
-                    src="https://picsum.photos/1600/1600" 
+                <img
+                    src="https://picsum.photos/1600/1600"
                     alt="Imagem da tela de Autenticação"
                     className="h-screen w-full object-cover"
                 />
@@ -48,10 +49,10 @@ export default function Autenticacao() {
 
                 {
                     erro ? (
-                    <div className="flex items-center bg-red-400 text-white py-3 px-5 my-2 border border-red-700 rounded-lg">
-                        {IconeAtencao}
-                        <span className="ml-3 text-sm">{erro}</span>
-                    </div>
+                        <div className="flex items-center bg-red-400 text-white py-3 px-5 my-2 border border-red-700 rounded-lg">
+                            {IconeAtencao}
+                            <span className="ml-3 text-sm">{erro}</span>
+                        </div>
                     ) : false
                 }
 
@@ -85,10 +86,10 @@ export default function Autenticacao() {
                     Entrar com Google
                 </button>
 
-                { modo === "login" ? (
+                {modo === "login" ? (
                     <p className="mt-8">
                         Novo por aqui?
-                        <a 
+                        <a
                             onClick={() => setModo("cadastro")}
                             className="text-blue-500 hover:text-blue-700 font-semibold cursor-pointer"
                         > Crie uma conta gratuitamente</a>
@@ -96,7 +97,7 @@ export default function Autenticacao() {
                 ) : (
                     <p className="mt-8">
                         Já faz parte da nossa comunidade?
-                        <a 
+                        <a
                             onClick={() => setModo("login")}
                             className="text-blue-500 hover:text-blue-700 font-semibold cursor-pointer"
                         > Entre com as suas Credenciais</a>
