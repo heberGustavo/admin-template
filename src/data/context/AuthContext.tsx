@@ -19,10 +19,10 @@ const NOME_COOKIE_AUTH = "admin-template-hg-auth";
 const AuthContext = createContext({
     usuario: null as Usuario | null,
     carregando: true,
-    login: (_email: string, _senha: string) => { },
-    cadastrar: (_email: string, _senha: string) => { },
-    loginGoogle: () => { },
-    logout: () => { },
+    login: async (email: string, senha: string) => {}, 
+    cadastrar: async (email: string, senha: string) => {},
+    loginGoogle: async () => {}, 
+    logout: async () => {}, 
 });
 
 
