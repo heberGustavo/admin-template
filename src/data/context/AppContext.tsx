@@ -25,7 +25,7 @@ export function AppProvider(props: AppProviderProps) {
 
     useEffect(() => {
         const temaSalvo = localStorage.getItem("tema");
-        setTema(temaSalvo);
+        setTema(temaSalvo ?? "");
     }, [])
    
     return (
