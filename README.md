@@ -32,10 +32,10 @@
 
 
 ## :gear: Architecture
-![image](https://github.com/user-attachments/assets/4dbf3699-f298-453c-8618-108786b80175)
+![{13E8267A-D2A1-416E-BFFB-5F74FA6F7B5B}](https://github.com/user-attachments/assets/ec99201a-c8d5-4602-9844-b8f4b419de6c)
 
 ## :round_pushpin: Demo
-[screencast-quiz-eta-plum.vercel.app-2024.09.13-07_24_59.webm](https://github.com/user-attachments/assets/3967b54c-cee4-4988-86c8-facf5ab0f283)
+[screencast-localhost_3000-2024_09_26-08_33_29.webm](https://github.com/user-attachments/assets/3a74413f-32a7-4440-b52d-2c36d9de54a2)
 
 Link: 
 
@@ -45,7 +45,7 @@ Clone that application using [Git](https://git-scm.com) and follow the next step
 
 ```bash
 # 1. Clone this repository
-$ git clone https://github.com/heberGustavo/quiz-web.git
+$ git clone https://github.com/heberGustavo/admin-template-web.git
 
 # 2. Open the project in Visual Studio Code
 
@@ -61,4 +61,4 @@ $ git clone https://github.com/heberGustavo/quiz-web.git
 
 
 ## :memo: Licence 
-This project is under the MIT license. See the [LICENSE](https://github.com/heberGustavo/quiz-web/blob/main/LICENSE) for more information.
+This project is under the MIT license. See the [LICENSE](https://github.com/heberGustavo/admin-template-web/blob/master/LICENSE) for more information.
