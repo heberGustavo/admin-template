@@ -1,40 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Admin Template ❓❔❓</h1>
+<p align="center">
+  
+</p>
 
-## Getting Started
+</br>
+<p align="center">
+  <a href="#globe_with_meridians-Technologies-and-Concepts-Implemented">Technology</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+   <a href="#gear-Architecture">Architecture</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+   <a href="#round_pushpin-demo">Demo</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#wrench-How-to-use">How to use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-Licence">Licence</a>
+</p>
 
-First, run the development server:
+## :globe_with_meridians: Technologies and Concepts Implemented
+
+- React JS
+- Next JS
+- TypeScript
+
+- Firebase
+- Tailwindcss
+- Hooks
+- Cookie
+- Local Storage
+
+- Interface
+- Components
+- Functions
+- Models
+- Router
+
+
+## :gear: Architecture
+![image](https://github.com/user-attachments/assets/4dbf3699-f298-453c-8618-108786b80175)
+
+## :round_pushpin: Demo
+[screencast-quiz-eta-plum.vercel.app-2024.09.13-07_24_59.webm](https://github.com/user-attachments/assets/3967b54c-cee4-4988-86c8-facf5ab0f283)
+
+Link: 
+
+## :wrench: How to use
+
+Clone that application using [Git](https://git-scm.com) and follow the next steps:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# 1. Clone this repository
+$ git clone https://github.com/heberGustavo/quiz-web.git
+
+# 2. Open the project in Visual Studio Code
+
+# 3. In Terminal, type:
+  3.1 - npm install
+  3.2 - npm run dev
+
+# 4. Open the application in browser
+
+# 5. It's running 
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## :memo: Licence 
+This project is under the MIT license. See the [LICENSE](https://github.com/heberGustavo/quiz-web/blob/main/LICENSE) for more information.
