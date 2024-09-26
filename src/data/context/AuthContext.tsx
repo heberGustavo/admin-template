@@ -5,15 +5,20 @@ import Usuario from "@/model/Usuario";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface AppProviderProps {
+    children: ReactNode;
     usuario?: Usuario;
     loginGoogle?: () => Promise<void>;
-    children: ReactNode;
+    logout?: () => Promise<void>;
 }
+
+const NOME_COOKIE_AUTH = "admin-template-hg-auth";
 
 const AuthContext = createContext({
     usuario: null as Usuario | null,
-    loginGoogle: () => { }
+    loginGoogle: () => { },
+    logout: () => { },
 });
+
 
 async function usuarioNormalizado(usuarioFirebase: firebase.User): Promise<Usuario> {
     const token = await usuarioFirebase.getIdToken();
@@ -27,16 +32,15 @@ async function usuarioNormalizado(usuarioFirebase: firebase.User): Promise<Usuar
     }
 }
 
-function gerenciarCookie(logado: boolean){
-    const nomeCookie = "admin-template-hg-auth";
-
-    if(logado){
-        Cookies.set(nomeCookie, logado.toString().toLowerCase(), {
+function gerenciarCookie(logado: boolean) {
+    
+    if (logado) {
+        Cookies.set(NOME_COOKIE_AUTH, logado.toString().toLowerCase(), {
             expires: 7
         });
     }
-    else{
-        Cookies.remove(nomeCookie);
+    else {
+        Cookies.remove(NOME_COOKIE_AUTH);
     }
 }
 
@@ -45,14 +49,14 @@ export function AuthProvider(props: AppProviderProps) {
     const [usuario, setUsuario] = useState<Usuario | null>(null);
 
     async function configurarSessao(usuarioFirebase: firebase.User | null) {
-        if(usuarioFirebase?.email){
+        if (usuarioFirebase?.email) {
             const usuario = await usuarioNormalizado(usuarioFirebase);
             setUsuario(usuario);
             gerenciarCookie(true);
             setCarregando(false);
             return usuario.email;
         }
-        else{
+        else {
             setUsuario(null);
             gerenciarCookie(false);
             setCarregando(false);
@@ -61,24 +65,43 @@ export function AuthProvider(props: AppProviderProps) {
     }
 
     async function loginGoogle() {
-        const resp = await firebase.auth().signInWithPopup(
-            new firebase.auth.GoogleAuthProvider()
-        )
+        try {
+            setCarregando(true);
+            const resp = await firebase.auth().signInWithPopup(
+                new firebase.auth.GoogleAuthProvider()
+            )
 
-        configurarSessao(resp.user)
-            route.push('/')
+            configurarSessao(resp.user)
+            route.push('/');
+        } finally {
+            setCarregando(false);
+        }
+    }
+
+    async function logout() {
+        try {
+            setCarregando(true);
+            await firebase.auth().signOut();
+            await configurarSessao(null);
+            route.push("/autenticacao");
+        } finally {
+            setCarregando(false);
+        }
     }
 
     useEffect(() => {
-        const cancelar = firebase.auth().onIdTokenChanged(configurarSessao);
-        return () => cancelar();
+        if(Cookies.get(NOME_COOKIE_AUTH)){
+            const cancelar = firebase.auth().onIdTokenChanged(configurarSessao);
+            return () => cancelar();
+        }
     }, []);
 
 
     return (
         <AuthContext.Provider value={{
             usuario,
-            loginGoogle
+            loginGoogle,
+            logout
         }}>
             {props.children}
         </AuthContext.Provider>
