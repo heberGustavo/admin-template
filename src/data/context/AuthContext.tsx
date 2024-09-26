@@ -7,6 +7,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 interface AppProviderProps {
     children: ReactNode;
     usuario?: Usuario;
+    carregando?: boolean;
     loginGoogle?: () => Promise<void>;
     logout?: () => Promise<void>;
 }
@@ -15,6 +16,7 @@ const NOME_COOKIE_AUTH = "admin-template-hg-auth";
 
 const AuthContext = createContext({
     usuario: null as Usuario | null,
+    carregando: true,
     loginGoogle: () => { },
     logout: () => { },
 });
@@ -83,7 +85,7 @@ export function AuthProvider(props: AppProviderProps) {
             setCarregando(true);
             await firebase.auth().signOut();
             await configurarSessao(null);
-            route.push("/autenticacao");
+            //route.push("/autenticacao");
         } finally {
             setCarregando(false);
         }
@@ -94,12 +96,15 @@ export function AuthProvider(props: AppProviderProps) {
             const cancelar = firebase.auth().onIdTokenChanged(configurarSessao);
             return () => cancelar();
         }
+        else 
+            setCarregando(false);
     }, []);
 
 
     return (
         <AuthContext.Provider value={{
             usuario,
+            carregando,
             loginGoogle,
             logout
         }}>
